@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/apptop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginEnd="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=".BILL SPLIT."
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/black"
+                    app:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/apptop"
+        android:background="@color/grey_10"
+        android:clipToPadding="false"
+        android:padding="@dimen/spacing_large"
+        android:scrollbars="none"
+        android:scrollingCache="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/spacing_middle"
+                    android:layout_height="@dimen/spacing_middle"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:src="@drawable/shape_circle"
+                    android:tint="#EF5350" />
+
+                <View
+                    android:layout_width="@dimen/spacing_middle"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bill Details"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/grey_80" />
+
+            </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="1dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/billAmount"
+                        style="@style/EditText.Flat.Grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:background="@android:color/transparent"
+                        android:hint="Bill amount (before tax and tip)"
+                        android:inputType="numberDecimal"
+                        android:minHeight="@dimen/spacing_xmlarge"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_5" />
+
+                    <EditText
+                        android:id="@+id/totalPeople"
+                        style="@style/EditText.Flat.Grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:background="@android:color/transparent"
+                        android:hint="Total people at the table"
+                        android:inputType="number"
+                        android:minHeight="@dimen/spacing_xmlarge"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_5" />
+
+                    <EditText
+                        android:id="@+id/taxPercentage"
+                        style="@style/EditText.Flat.Grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:background="@android:color/transparent"
+                        android:hint="Tax Percentage (%)"
+                        android:inputType="numberDecimal"
+                        android:visibility="gone"
+                        android:minHeight="@dimen/spacing_xmlarge"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_5" />
+
+                    <EditText
+                        android:id="@+id/tipPercentage"
+                        style="@style/EditText.Flat.Grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:background="@android:color/transparent"
+                        android:hint="Tip Percentage (%)"
+                        android:inputType="numberDecimal"
+                        android:visibility="gone"
+                        android:minHeight="@dimen/spacing_xmlarge"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="Preferences"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/grey_90"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/spacing_xmlarge"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Use default tax rate"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/grey_40" />
+
+                <View
+                    android:layout_width="@dimen/spacing_middle"
+                    android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/taxSwitcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true" />
+
+                <View
+                    android:layout_width="@dimen/spacing_middle"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey_10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/spacing_xmlarge"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Use default tip rate"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/grey_40" />
+
+                <View
+                    android:layout_width="@dimen/spacing_middle"
+                    android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/tipSwitcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true" />
+
+                <View
+                    android:layout_width="@dimen/spacing_middle"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submitBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:background="@drawable/btn_rect"
+                android:clickable="true"
+                android:text="SUBMIT"
+                android:onClick="calculate"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>
