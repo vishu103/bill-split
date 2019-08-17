@@ -12,9 +12,10 @@ It is a smart bill splitting app which removes all the hassles of splitting a bi
 **Clone and import in Android Studio to mess around.**
 
 #### Features
-1. Set default tax rate
-2. Set default tip rate
-3. Split bill equally or unequally.
+1. Set your default Currency
+2. Set default tax rate
+3. Set default tip rate
+4. Split bill equally or unequally.
 
 Screenshots:
 
