@@ -25,4 +25,7 @@ Bill Split for Android: [Download apk file here](https://drive.google.com/file/d
 
 [![GooglePlayLink](https://user-images.githubusercontent.com/29485313/61143889-12bd9a00-a4f1-11e9-90ce-73d190532653.jpg)](https://play.google.com/store/apps/details?id=in.edureal.billsplit)
 
+**Checkout the 5th app (???)**: Coming Soon...
+**Checkout the 3rd app (Open News)**: [Here on GitHub](https://github.com/vishu103/open-news)
+
 **The Github community can contribute freely as all the apps under this pledge will be open-source.**
