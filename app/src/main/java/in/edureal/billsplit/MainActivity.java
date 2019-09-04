@@ -22,6 +22,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText totalPeople;
     private EditText taxPercentage;
     private EditText tipPercentage;
+
+    private AdView adView;
 
     private SwitchCompat taxSwitcher;
     private SwitchCompat tipSwitcher;
@@ -271,6 +277,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713"); // Sample App ID
+        adView=(AdView) findViewById(R.id.adView);
+        AdRequest request=new AdRequest.Builder().build();
+        adView.loadAd(request);
 
     }
 

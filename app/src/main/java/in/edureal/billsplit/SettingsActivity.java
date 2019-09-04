@@ -2,15 +2,22 @@ package in.edureal.billsplit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.mynameismidori.currencypicker.CurrencyPicker;
 import com.mynameismidori.currencypicker.CurrencyPickerListener;
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -18,7 +25,45 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView taxRate;
     private TextView tipRate;
 
-    public void changeCurrency(View view){
+    private RewardedVideoAd rewardVideo;
+
+    private SharedPreferences sp;
+
+    private static String rewardVideoAdId="ca-app-pub-3940256099942544/5224354917"; // Test Reward Video Ad
+
+    public void checkChangeCurrency(View view){
+        if(sp.contains("appFeatures")){
+            changeCurrency();
+        }else{
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Unlock Feature")
+                    .setContentText("You can unlock this feature by just watching a video.")
+                    .setConfirmText("OK")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            // Show Ad
+                            sDialog.dismissWithAnimation();
+
+                            if(rewardVideo.isLoaded()){
+                                rewardVideo.show();
+                            }else{
+                                rewardVideo.loadAd(rewardVideoAdId, new AdRequest.Builder().build());
+                            }
+
+                        }
+                    })
+                    .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    private void changeCurrency(){
         final CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
         picker.setListener(new CurrencyPickerListener() {
             @Override
@@ -42,7 +87,39 @@ public class SettingsActivity extends AppCompatActivity {
         picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
     }
 
-    public void changeTax(View view){
+    public void checkChangeTax(View view){
+        if(sp.contains("appFeatures")){
+            changeTax();
+        }else{
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Unlock Feature")
+                    .setContentText("You can unlock this feature by just watching a video.")
+                    .setConfirmText("OK")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            // Show Ad
+                            sDialog.dismissWithAnimation();
+
+                            if(rewardVideo.isLoaded()){
+                                rewardVideo.show();
+                            }else{
+                                rewardVideo.loadAd(rewardVideoAdId, new AdRequest.Builder().build());
+                            }
+
+                        }
+                    })
+                    .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    private void changeTax(){
         new LovelyTextInputDialog(this)
                 .setTopColorRes(R.color.success)
                 .setTitle("Please enter the tax rate")
@@ -75,7 +152,39 @@ public class SettingsActivity extends AppCompatActivity {
                 .show();
     }
 
-    public void changeTip(View view){
+    public void checkChangeTip(View view){
+        if(sp.contains("appFeatures")){
+            changeTip();
+        }else{
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Unlock Feature")
+                    .setContentText("You can unlock this feature by just watching a video.")
+                    .setConfirmText("OK")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            // Show Ad
+                            sDialog.dismissWithAnimation();
+
+                            if(rewardVideo.isLoaded()){
+                                rewardVideo.show();
+                            }else{
+                                rewardVideo.loadAd(rewardVideoAdId, new AdRequest.Builder().build());
+                            }
+
+                        }
+                    })
+                    .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    public void changeTip(){
         new LovelyTextInputDialog(this)
                 .setTopColorRes(R.color.success)
                 .setTitle("Please enter the tip rate")
@@ -120,6 +229,60 @@ public class SettingsActivity extends AppCompatActivity {
         currency.setText("Current: "+SharedPreferenceSingleton.getInstance(this.getApplicationContext()).getSp().getString("currency","INR")+"\nClick to change the default currency.");
         taxRate.setText("Current: "+SharedPreferenceSingleton.getInstance(this.getApplicationContext()).getSp().getFloat("tax",0.0f)+" %\nClick to change the default tax rate.");
         tipRate.setText("Current: "+SharedPreferenceSingleton.getInstance(this.getApplicationContext()).getSp().getFloat("tip",0.0f)+" %\nClick to change the default tip rate.");
+
+        sp=getSharedPreferences("in.edureal.billsplit",MODE_PRIVATE);
+        final SharedPreferences.Editor spEditor=sp.edit();
+
+        rewardVideo=MobileAds.getRewardedVideoAdInstance(this);
+        if(!sp.contains("appFeatures")){
+            rewardVideo.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+                @Override
+                public void onRewardedVideoAdLoaded() {
+
+                }
+
+                @Override
+                public void onRewardedVideoAdOpened() {
+
+                }
+
+                @Override
+                public void onRewardedVideoStarted() {
+
+                }
+
+                @Override
+                public void onRewardedVideoAdClosed() {
+                    rewardVideo.loadAd(rewardVideoAdId, new AdRequest.Builder().build());
+                    new SweetAlertDialog(SettingsActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Good job!")
+                            .setContentText("Features unlocked...")
+                            .show();
+                }
+
+                @Override
+                public void onRewarded(RewardItem rewardItem) {
+                    spEditor.putInt("appFeatures",1).commit();
+                }
+
+                @Override
+                public void onRewardedVideoAdLeftApplication() {
+
+                }
+
+                @Override
+                public void onRewardedVideoAdFailedToLoad(int i) {
+                    Toast.makeText(SettingsActivity.this, "There is no ad for you to watch right now. Please try again later...", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onRewardedVideoCompleted() {
+
+                }
+            });
+            rewardVideo.loadAd(rewardVideoAdId, new AdRequest.Builder().build());
+        }
+
     }
 
     @Override
@@ -128,4 +291,21 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onPause() {
+        rewardVideo.pause(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        rewardVideo.resume(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        rewardVideo.destroy(this);
+        super.onDestroy();
+    }
 }

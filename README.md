@@ -17,6 +17,9 @@ It is a smart bill splitting app which removes all the hassles of splitting a bi
 3. Set default tip rate
 4. Split bill equally or unequally.
 
+#### Changelog
+1. 4th September 2019 - Added support for displaying ads in the app.
+
 Screenshots:
 
 ![Screenshots](https://user-images.githubusercontent.com/29485313/63207287-d2999a80-c0e0-11e9-8552-d63a56520cc9.jpg)

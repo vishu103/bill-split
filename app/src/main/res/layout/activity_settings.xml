@@ -88,7 +88,7 @@
                     android:minHeight="?attr/actionBarSize"
                     android:orientation="vertical"
                     android:clickable="true"
-                    android:onClick="changeCurrency"
+                    android:onClick="checkChangeCurrency"
                     android:background="?attr/selectableItemBackground"
                     android:padding="@dimen/spacing_large">
 
@@ -132,7 +132,7 @@
                     android:orientation="vertical"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
-                    android:onClick="changeTax"
+                    android:onClick="checkChangeTax"
                     android:padding="@dimen/spacing_large">
 
                     <LinearLayout
@@ -175,7 +175,7 @@
                     android:orientation="vertical"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
-                    android:onClick="changeTip"
+                    android:onClick="checkChangeTip"
                     android:padding="@dimen/spacing_large">
 
                     <LinearLayout
