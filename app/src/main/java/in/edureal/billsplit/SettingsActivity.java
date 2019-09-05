@@ -30,11 +30,13 @@ public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences sp;
 
     private static String rewardVideoAdId="ca-app-pub-3940256099942544/5224354917"; // Test Reward Video Ad
+    private String currentFeature;
 
     public void checkChangeCurrency(View view){
-        if(sp.contains("appFeatures")){
+        if(sp.contains("currencyFeature")){
             changeCurrency();
         }else{
+            currentFeature="currencyFeature";
             new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("Unlock Feature")
                     .setContentText("You can unlock this feature by just watching a video.")
@@ -88,9 +90,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void checkChangeTax(View view){
-        if(sp.contains("appFeatures")){
+        if(sp.contains("taxFeature")){
             changeTax();
         }else{
+            currentFeature="taxFeature";
             new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("Unlock Feature")
                     .setContentText("You can unlock this feature by just watching a video.")
@@ -153,9 +156,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void checkChangeTip(View view){
-        if(sp.contains("appFeatures")){
+        if(sp.contains("tipFeature")){
             changeTip();
         }else{
+            currentFeature="tipFeature";
             new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("Unlock Feature")
                     .setContentText("You can unlock this feature by just watching a video.")
@@ -230,11 +234,12 @@ public class SettingsActivity extends AppCompatActivity {
         taxRate.setText("Current: "+SharedPreferenceSingleton.getInstance(this.getApplicationContext()).getSp().getFloat("tax",0.0f)+" %\nClick to change the default tax rate.");
         tipRate.setText("Current: "+SharedPreferenceSingleton.getInstance(this.getApplicationContext()).getSp().getFloat("tip",0.0f)+" %\nClick to change the default tip rate.");
 
+        currentFeature="";
         sp=getSharedPreferences("in.edureal.billsplit",MODE_PRIVATE);
         final SharedPreferences.Editor spEditor=sp.edit();
 
         rewardVideo=MobileAds.getRewardedVideoAdInstance(this);
-        if(!sp.contains("appFeatures")){
+        if(!sp.contains("currencyFeature") || !sp.contains("taxFeature") || !sp.contains("tipFeature")){
             rewardVideo.setRewardedVideoAdListener(new RewardedVideoAdListener() {
                 @Override
                 public void onRewardedVideoAdLoaded() {
@@ -262,7 +267,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 @Override
                 public void onRewarded(RewardItem rewardItem) {
-                    spEditor.putInt("appFeatures",1).commit();
+                    spEditor.putInt(currentFeature,1).commit();
                 }
 
                 @Override

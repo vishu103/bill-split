@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
@@ -44,6 +46,8 @@ public class CalculationActivity extends AppCompatActivity {
     private float pay;
     private float equal;
     private String symbol;
+
+    private AdView adView;
 
 
     private void initToolbar() {
@@ -198,6 +202,10 @@ public class CalculationActivity extends AppCompatActivity {
         if(people>1){
             unequalSplit.setVisibility(View.VISIBLE);
         }
+
+        adView=(AdView) findViewById(R.id.adView);
+        AdRequest request=new AdRequest.Builder().build();
+        adView.loadAd(request);
 
     }
 

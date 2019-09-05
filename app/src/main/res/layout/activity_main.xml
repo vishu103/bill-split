@@ -48,7 +48,10 @@
         android:layout_below="@id/apptop"
         android:background="@color/grey_10"
         android:clipToPadding="false"
-        android:padding="@dimen/spacing_large"
+        android:paddingTop="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingBottom="50dp"
         android:scrollbars="none"
         android:scrollingCache="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -282,7 +285,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" >
     </com.google.android.gms.ads.AdView>
     
 </RelativeLayout>
